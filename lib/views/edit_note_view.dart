@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:notiq/widgets/custom_app_bar.dart';
+import 'package:notiq/widgets/custom_text_field.dart';
 
 class EditNoteView extends StatelessWidget {
   const EditNoteView({super.key});
@@ -20,7 +21,11 @@ class EditNoteViewBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(height: 50),
-          CustomAppBar(title: "Edit Notes"  , icon: Icons.check,),
+          CustomAppBar(title: "Edit Notes", icon: Icons.check),
+          SizedBox(height: 24),
+          CustomTextField(hint: "Title"),
+          SizedBox(height: 16),
+          CustomTextField(hint: "Content" , maxLines: 5,),
         ],
       ),
     );
