@@ -40,9 +40,9 @@ class NotesItem extends StatelessWidget {
             Text(
               "Seb10 , 2026",
               style: TextStyle(
-                color: Colors.black.withOpacity(.6),
+                color: Colors.black.withOpacity(.4),
                 fontSize: 12,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ],
