@@ -7,21 +7,58 @@ class AddNoteBottomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomTextField(hint: "Title"),
-            SizedBox(height: 16),
-            CustomTextField(hint: "Content", maxLines: 5),
-            SizedBox(height: 36),
-            CustomBottom(),
-          ],
-        ),
-      ),
+    return const Padding(
+      padding: EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+      child: SingleChildScrollView(child: AddNoteForm()),
     );
   }
 }
 
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({super.key});
 
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+final GlobalKey<FormState> formKey = GlobalKey();
+AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+String? title, subTitle;
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
+      child: Column(
+        children: [
+          CustomTextField(
+            onSaved: (value) {
+              title == value;
+            },
+            hint: "Title",
+          ),
+          SizedBox(height: 16),
+          CustomTextField(
+            onSaved: (value) {
+              subTitle == value;
+            },
+            hint: "Content",
+            maxLines: 5,
+          ),
+          SizedBox(height: 36),
+          CustomBottom(
+            onTap: () {
+              if (formKey.currentState!.validate()) {
+                formKey.currentState!.save();
+              } else {
+                autovalidateMode = AutovalidateMode.always;
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
